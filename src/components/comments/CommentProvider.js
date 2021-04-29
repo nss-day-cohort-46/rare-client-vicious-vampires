@@ -1,5 +1,7 @@
 import React, {useState, createContext} from "react"
 
+export const CommentContext = createContext()
+
 export const CommentProvider = (props) => {
 
     const [comments, setComments] = useState()
@@ -47,7 +49,7 @@ export const CommentProvider = (props) => {
 
     return (
         <CommentContext.Provider value={{
-            comments, getComments, addComment, deleteComment, editComment
+            comments, getComments, addComment, deleteComment, editComment, getCommentByPostId 
         }}>
             {props.children}
         </CommentContext.Provider>
