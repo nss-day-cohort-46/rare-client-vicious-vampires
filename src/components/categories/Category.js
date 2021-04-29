@@ -24,13 +24,13 @@ export const CategoryCard = ({ category }) => {
     return (
 
         <section className="category">
-            <h3 className="category__name">
-                {/* displays name as hyperlink */}
-                <Link to={`/categories/detail/${category.id}`}>
-                    {category.label}
-                </Link>
-            </h3>
-            <button onClick={handleDelete}>Delete</button>
+            <h3 className="category__name">Categories</h3>
+            <h3 className="category__name">{category.label}</h3>
+            <div><button onClick={handleDelete}>Delete</button>
+                <button onClick={() => {
+                    history.push(`/categories/edit/${category.id}`)
+                }}>Edit</button></div>
+
         </section>
     )
 }
