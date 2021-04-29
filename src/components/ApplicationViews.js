@@ -8,11 +8,8 @@ import { PostProvider } from "./posts/PostProvider"
 import { TagProvider } from "./tags/TagsProvider"
 import { TagList } from "./tags/TagList" 
 import { PostList } from "./posts/PostList"
-<<<<<<< HEAD
 import { PostForm } from "./posts/PostForm"
-=======
 import { TagForm } from "./tags/TagForm"
->>>>>>> main
 
  
 export const ApplicationViews = () => {
