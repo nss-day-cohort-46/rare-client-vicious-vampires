@@ -4,6 +4,7 @@ import { PostProvider } from "./posts/PostProvider"
 import { TagProvider } from "./tags/TagsProvider"
 import { TagList } from "./tags/TagList" 
 import { PostList } from "./posts/PostList"
+import { PostForm } from "./posts/PostForm"
 
 export const ApplicationViews = () => {
     return (
@@ -30,9 +31,9 @@ export const ApplicationViews = () => {
                 <PostList />
             </Route>
 
-            {/* <Route path="/posts/create">
+            <Route path="/posts/create">
                 <PostForm />
-            </Route> */}
+            </Route>
         </PostProvider>
 
     </>
