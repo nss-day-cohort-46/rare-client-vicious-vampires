@@ -13,6 +13,11 @@ export const TagProvider = (props) => {
             .then(res => res.json())
             .then(setTags)
     }
+    
+    const getTagById = (id) => {
+      return fetch(`http://localhost:8088/tags/${id}`)
+          .then(res => res.json())
+  }
 
     const addTag = (tag) => {
         return fetch("http://localhost:8088/tags", {
@@ -47,7 +52,7 @@ export const TagProvider = (props) => {
 
     return (
         <TagContext.Provider value={{
-            tags, addTag, getTags, updateTag, deletePost
+            tags, addTag, getTags, updateTag, deletePost, getTagById
         }}>
             {props.children}
         </TagContext.Provider>
