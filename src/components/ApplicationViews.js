@@ -2,6 +2,8 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { PostProvider } from "./posts/PostProvider"
 import { PostList } from "./posts/PostList"
+import { CommentProvider } from "./comments/CommentProvider"
+import { CommentList } from "./comments/CommentList"
 
 export const ApplicationViews = () => {
     return (
@@ -15,6 +17,11 @@ export const ApplicationViews = () => {
      {/* Category Area    */}
      
      {/* Comment Area    */}
+        <CommentProvider>
+            <Route exact path="/comments">
+                <CommentList />
+            </Route>
+        </CommentProvider>
 
      {/* Tag Area    */}
 
