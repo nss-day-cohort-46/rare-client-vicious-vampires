@@ -1,5 +1,5 @@
-import React, { useContext, onCancel, onConfirm } from "react"
-import { CategoryContext, CategoryProvider } from "../categories/CategoryProvider"
+import React, { useContext} from "react"
+import { CategoryContext} from "../categories/CategoryProvider"
 import { useHistory } from "react-router-dom"
 import "./Category.css"
 
