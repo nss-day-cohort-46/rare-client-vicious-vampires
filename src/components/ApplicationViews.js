@@ -4,6 +4,7 @@ import { PostProvider } from "./posts/PostProvider"
 import { TagProvider } from "./tags/TagsProvider"
 import { TagList } from "./tags/TagList" 
 import { PostList } from "./posts/PostList"
+import { TagForm } from "./tags/TagForm"
 
 export const ApplicationViews = () => {
     return (
@@ -22,6 +23,12 @@ export const ApplicationViews = () => {
         <TagProvider>
             <Route exact path="/tags">
                 <TagList />
+            </Route>
+            <Route exact path="/tags/edit/:tagId(\d+)">
+                <TagForm/>
+            </Route>
+            <Route exact path="/tags/create">
+                <TagForm/>
             </Route>
         </TagProvider>
     {/* Post Area    */}
