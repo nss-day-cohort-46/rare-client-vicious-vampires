@@ -25,7 +25,7 @@ export const CategoryProvider = (props) => {
     }
 
     const getCategoryById = (id) => {
-        return fetch(`http://localhost:8088/animals/${id}`)
+        return fetch(`http://localhost:8088/categories/${id}`)
             .then(res => res.json())
     }
 
