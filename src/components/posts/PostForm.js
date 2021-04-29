@@ -1,10 +1,12 @@
 import React, { useState, useContext, useEffect } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { PostContext } from "./PostProvider"
 import "./Posts.css"
 
-export const PostForm = (props) => {
-    const { posts, getPosts, addPost, updatePost } = useContext(PostContext)
+export const PostForm = () => {
+
+    const { addPost, getPostById, updatePost } = useContext(PostContext)
+    // const { categories, getCategories } = useContext(PostContext)
 
     const [ post, setPost ] = useState({
         user_id: 0,
@@ -15,9 +17,13 @@ export const PostForm = (props) => {
         approved: ""
     })
 
-    const history = useHistory()
+    console.log(post)
 
-    const editMode = props.match.params.hasOwnProperty("postId")
+    const [ isLoading, setIsLoading ] = useState(true)
+
+    const history = useHistory()
+    const { postId } = useParams()
+    
 
     const handleControlledInputChange = (event) => {
         const newPost = { ...post }
@@ -25,55 +31,57 @@ export const PostForm = (props) => {
         setPost(newPost)
     }
 
-    const postInEditMode = (props) => {
-        if (editMode) {
-            const postId = parseInt(props.match.params.postId)
-            const chosenPost = posts.find(post => post.id === postId) || {}
-            setPost(chosenPost)
-        }
-    }
-
     useEffect(() => {
-        getPosts()
+        // getCategories()
     }, [])
 
-    useEffect(() => {
-        postInEditMode()
-    }, [posts])
+    // const  handleSavePost = () => {
+    //     if (parseInt(post.category_id) === 0) {
+    //         window.alert("Please select a category")
+    //     } else {
+    //         setIsLoading(true)
+    //         if (postId) {
+    //             updatePost ({
+    //                 id: post.id,
+    //                 user_id: parseInt(localStorage.getItem("rare_user_id")),
+    //                 category_id: category_id,
+    //                 title: title,
+    //                 publication_date: publication_date,
+    //                 content: content,
+    //                 approved: approved
+    //             })
+    //                 .then(() => history.push(`/posts/detail/${post.id}`))
+    //         } else {
+    //             addPost({
+    //                 user_id: parseInt(localStorage.getItem("rare_user_id")),
+    //                 category_id: category_id,
+    //                 title: title,
+    //                 publication_date: publication_date,
+    //                 content: content,
+    //                 approved: approved
+    //             })
+    //                 .then(() => history.push("/posts"))
+    //         }
+    //     }
+    // } 
 
-    const  handleSavePost = () => {
-        if(category_id === 0) {
-            window.alert("Please select a category")
+    useEffect(() => {
+        if (postId) {
+            // getCategories()
+            getPostById(postId)
+            .then(post => {
+                setPost(post)
+                setIsLoading(false)
+            })
         } else {
-            if (editMode) {
-                updatePost ({
-                    id: post.id,
-                    user_id: parseInt(localStorage.getItem("rare_user_id")),
-                    category_id: category_id,
-                    title: title,
-                    publication_date: publication_date,
-                    content: content,
-                    approved: approved
-                })
-                    .then(() => props.history.push("/posts"))
-            } else {
-                addPost({
-                    user_id: parseInt(localStorage.getItem("rare_user_id")),
-                    category_id: category_id,
-                    title: title,
-                    publication_date: publication_date,
-                    content: content,
-                    approved: approved
-                })
-                    .then(() => props.history.push("/posts"))
-            }
+            setIsLoading(false)
         }
-    } 
+    }, [])
 
     return (
 
         <form className="postForm">
-            <h2 className="postFormTitle">{editMode ? "Update Post" : "Create a Post"}</h2>
+            <h2 className="postFormTitle">{postId ? "Update Post" : "Create a Post"}</h2>
             <fieldset>
                 <label htmlFor="title">Title: </label>
                 <input type="text" id="title" required autoFocus
@@ -95,13 +103,13 @@ export const PostForm = (props) => {
                     onChange={handleControlledInputChange}
                 ></textarea>
             </fieldset>
-            <button type="submit"
-                onClick={evt => {
+            <button disabled={isLoading}
+                    className="button savePostButton"
+                    onClick={evt => {
                     evt.preventDefault()
-                    handleSavePost()
-                }}
-                className="button savePostButton">
-                {editMode ? "Save Updates" : "Create Post"}
+                    // handleSavePost()
+                }}>
+                {postId ? "Save Updates" : "Create Post"}
             </button>
         </form>
     )
