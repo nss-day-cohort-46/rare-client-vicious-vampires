@@ -8,7 +8,7 @@ export const CategoryCard = ({ category}) => (
         <h3 className="category__name">
             {/* displays name as hyperlink */}
         <Link to={`/categories/detail/${category.id}`}>
-          { category.name }
+          { category.label }
         </Link>
         </h3>  
     </section>

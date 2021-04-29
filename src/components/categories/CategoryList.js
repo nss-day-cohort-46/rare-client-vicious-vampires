@@ -23,8 +23,8 @@ export const CategoryList = () => {
     return (
       <div className="categories">
         <h2>Categories</h2>
-        <button onClick={() => {history.push("/categories/create")}}>
-            Create New Category
+        <button className="button category__button" onClick={() => {history.push("/categories/create")}}>
+            Create Category
           </button>
         {console.log("CategoryList: Render", categories)}
         {
