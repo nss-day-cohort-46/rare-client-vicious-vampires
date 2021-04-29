@@ -21,7 +21,6 @@ export const ApplicationViews = () => {
             </main>
 
             {/* Category Area    */}
-
             <CategoryProvider>
                 <Route exact path="/categories">
                     <CategoryList />
@@ -30,9 +29,9 @@ export const ApplicationViews = () => {
                     <CategoryForm />
                 </Route>
 
-                <Route exact path="/categories/detail/:categoryId(\d+)">
+                {/* <Route exact path="/categories/detail/:categoryId(\d+)">
                             <CategoryDetail />
-                        </Route>
+                </Route> */}
             </CategoryProvider>
 
             
@@ -43,15 +42,19 @@ export const ApplicationViews = () => {
             </Route>
         </TagProvider>
     {/* Post Area    */}
-        <PostProvider>
-            <Route exact path="/posts">
-                <PostList />
-            </Route>
+        <CategoryProvider>
+            <PostProvider>
 
-            <Route path="/posts/create">
-                <PostForm />
-            </Route>
-        </PostProvider>
+                <Route exact path="/posts">
+                    <PostList />
+                </Route>
+
+                <Route exact path="/posts/create">
+                    <PostForm />
+                </Route>
+
+            </PostProvider>
+        </CategoryProvider>
 
             {/* Comment Area    */}
 

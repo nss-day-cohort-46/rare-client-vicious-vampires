@@ -1,12 +1,13 @@
 import React, { useState, useContext, useEffect } from "react"
 import { useHistory, useParams } from "react-router-dom"
 import { PostContext } from "./PostProvider"
+import { CategoryContext } from "../categories/CategoryProvider"
 import "./Posts.css"
 
 export const PostForm = () => {
 
     const { addPost, getPostById, updatePost } = useContext(PostContext)
-    // const { categories, getCategories } = useContext(PostContext)
+    const { categories, getCategories } = useContext(CategoryContext)
 
     const [ post, setPost ] = useState({
         user_id: 0,
@@ -16,17 +17,15 @@ export const PostForm = () => {
         content: "",
         approved: true
     })
-
     console.log(post)
-
     const [ isLoading, setIsLoading ] = useState(true)
 
     const history = useHistory()
     const { postId } = useParams()
     
-    // useEffect(() => {
-    //     getCategories()
-    // }, [])
+    useEffect(() => {
+        getCategories()
+    }, [])
 
     const handleControlledInputChange = (event) => {
         const newPost = { ...post }
@@ -36,15 +35,15 @@ export const PostForm = () => {
 
 
     const  handleSavePost = () => {
-        // if (parseInt(post.category_id) === 0) {
-        //     window.alert("Please select a category")
-        // } else {
-        //     setIsLoading(true)
+        if (post.title === "" && post.title === "" ) {
+            window.alert("Please complete all fields")
+        } else {
+            setIsLoading(true)
             if (postId) {
                 updatePost({
                     id: post.id,
                     user_id: parseInt(localStorage.getItem("rare_user_id")),
-                    category_id: post.category_id,
+                    category_id: parseInt(post.category_id),
                     title: post.title,
                     publication_date: post.publication_date,
                     content: post.content,
@@ -54,7 +53,7 @@ export const PostForm = () => {
             } else {
                 addPost({
                     user_id: parseInt(localStorage.getItem("rare_user_id")),
-                    category_id: post.category_id,
+                    category_id: parseInt(post.category_id),
                     title: post.title,
                     publication_date: post.publication_date,
                     content: post.content,
@@ -63,19 +62,21 @@ export const PostForm = () => {
                     .then(() => history.push("/posts"))
             }
         }
-    // } 
+    } 
 
     useEffect(() => {
-        if (postId) {
-            // getCategories()
-            getPostById(postId)
-            .then(post => {
-                setPost(post)
+        getCategories()
+        .then(() => {
+            if (postId) {
+                getPostById(postId)
+                .then(post => {
+                    setPost(post)
+                    setIsLoading(false)
+                })
+            } else {
                 setIsLoading(false)
-            })
-        } else {
-            setIsLoading(false)
-        }
+            }
+        })
     }, [])
 
     return (
@@ -96,6 +97,22 @@ export const PostForm = () => {
                         placeholder="Enter Text Here"
                         onChange={handleControlledInputChange}
                         defaultValue={post.content}></textarea>
+                </fieldset>
+                <fieldset>
+                    <div>
+                        <label htmlFor="category_id"></label>
+                        <select value={post.category_id} id="category_id"
+                            placeholder="Select a Category"
+                            className="formControl"
+                            onChange={handleControlledInputChange}>
+                            <option value="0">Select a category</option>
+                            {categories.map(cat => (
+                            <option key={cat.id} value={cat.id}>
+                            {cat.label}
+                            </option>
+                            ))}
+                        </select>
+                    </div>
                 </fieldset>
                 <button disabled={isLoading}
                         className="button savePostButton"
