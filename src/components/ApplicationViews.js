@@ -4,6 +4,7 @@ import { PostProvider } from "./posts/PostProvider"
 import { PostList } from "./posts/PostList"
 import { CommentProvider } from "./comments/CommentProvider"
 import { CommentList } from "./comments/CommentList"
+import { CommentForm} from "./comments/CommentForm"
 
 export const ApplicationViews = () => {
     return (
@@ -20,6 +21,12 @@ export const ApplicationViews = () => {
         <CommentProvider>
             <Route exact path="/comments">
                 <CommentList />
+            </Route>
+            <Route exact path="/posts/:postId(\d+)/createcomment">
+                <CommentForm />
+            </Route>
+            <Route path="/comments/edit/:commentId(\d+)">
+                <CommentForm />
             </Route>
         </CommentProvider>
 
