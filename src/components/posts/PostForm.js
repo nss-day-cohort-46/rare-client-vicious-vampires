@@ -5,7 +5,7 @@ import "./Posts.css"
 
 export const PostForm = () => {
 
-    const { addPost, getPostById, updatePost } = useContext(PostContext)
+    const { getPosts, addPost, getPostById, updatePost } = useContext(PostContext)
     // const { categories, getCategories } = useContext(PostContext)
 
     const [ post, setPost ] = useState({
@@ -35,35 +35,35 @@ export const PostForm = () => {
         // getCategories()
     }, [])
 
-    // const  handleSavePost = () => {
-    //     if (parseInt(post.category_id) === 0) {
-    //         window.alert("Please select a category")
-    //     } else {
-    //         setIsLoading(true)
-    //         if (postId) {
-    //             updatePost ({
-    //                 id: post.id,
-    //                 user_id: parseInt(localStorage.getItem("rare_user_id")),
-    //                 category_id: category_id,
-    //                 title: title,
-    //                 publication_date: publication_date,
-    //                 content: content,
-    //                 approved: approved
-    //             })
-    //                 .then(() => history.push(`/posts/detail/${post.id}`))
-    //         } else {
-    //             addPost({
-    //                 user_id: parseInt(localStorage.getItem("rare_user_id")),
-    //                 category_id: category_id,
-    //                 title: title,
-    //                 publication_date: publication_date,
-    //                 content: content,
-    //                 approved: approved
-    //             })
-    //                 .then(() => history.push("/posts"))
-    //         }
-    //     }
-    // } 
+    const  handleSavePost = () => {
+        if (parseInt(post.category_id) === 0) {
+            window.alert("Please select a category")
+        } else {
+            setIsLoading(true)
+            if (postId) {
+                updatePost ({
+                    id: post.id,
+                    user_id: parseInt(localStorage.getItem("rare_user_id")),
+                    category_id: category_id,
+                    title: title,
+                    publication_date: publication_date,
+                    content: content,
+                    approved: approved
+                })
+                    .then(() => history.push(`/posts/detail/${post.id}`))
+            } else {
+                addPost({
+                    user_id: parseInt(localStorage.getItem("rare_user_id")),
+                    category_id: category_id,
+                    title: title,
+                    publication_date: publication_date,
+                    content: content,
+                    approved: approved
+                })
+                    .then(() => history.push("/posts"))
+            }
+        }
+    } 
 
     useEffect(() => {
         if (postId) {
@@ -93,15 +93,15 @@ export const PostForm = () => {
             <fieldset>
                 <label htmlFor="date">Date of Publication: </label>
                 <input type="date" id="date" required autoFocus className="formControl"
+                    defaultValue={post.publication_date}
                     onChange={handleControlledInputChange}
                 ></input>
             </fieldset>
             <fieldset>
                 <label htmlFor="content"></label>
-                <textarea type="text" id="content" required autoFocus className="formControl"
+                <textarea type="text" id="content" required autoFocus className="formControl postTextArea"
                     placeholder="Enter Text Here"
-                    onChange={handleControlledInputChange}
-                ></textarea>
+                    onChange={handleControlledInputChange}></textarea>
             </fieldset>
             <button disabled={isLoading}
                     className="button savePostButton"
