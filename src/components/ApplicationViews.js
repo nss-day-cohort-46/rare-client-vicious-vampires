@@ -4,6 +4,10 @@ import { CategoryProvider } from "./categories/CategoryProvider"
 import { CategoryList } from "./categories/CategoryList"
 import {CategoryForm} from "./categories/CategoryForm"
 import {CategoryDetail} from "./categories/CategoryDetail"
+import { PostProvider } from "./posts/PostProvider"
+import { TagProvider } from "./tags/TagsProvider"
+import { TagList } from "./tags/TagList" 
+import { PostList } from "./posts/PostList"
 
  
 export const ApplicationViews = () => {
@@ -31,6 +35,22 @@ export const ApplicationViews = () => {
             </CategoryProvider>
 
             
+     {/* Tag Area    */}
+        <TagProvider>
+            <Route exact path="/tags">
+                <TagList />
+            </Route>
+        </TagProvider>
+    {/* Post Area    */}
+        <PostProvider>
+            <Route exact path="/posts">
+                <PostList />
+            </Route>
+
+            {/* <Route path="/posts/create">
+                <PostForm />
+            </Route> */}
+        </PostProvider>
 
             {/* Comment Area    */}
 
