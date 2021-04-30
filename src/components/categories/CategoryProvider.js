@@ -25,13 +25,13 @@ export const CategoryProvider = (props) => {
     }
 
     const getCategoryById = (id) => {
-        return fetch(`http://localhost:8088/animals/${id}`)
+        return fetch(`http://localhost:8088/categories/${id}`)
             .then(res => res.json())
     }
 
 
     const deleteCategory = categoryId => {
-        return fetch(`http://localhost:8088/categories/${categoryId}`, {
+        return fetch(`http://localhost:8088/categories/${categoryId}`,{
             method: "DELETE"
         })
             .then(getCategories)

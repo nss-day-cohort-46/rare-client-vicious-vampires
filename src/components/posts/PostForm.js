@@ -8,16 +8,17 @@ export const PostForm = () => {
 
     const { addPost, getPostById, updatePost } = useContext(PostContext)
     const { categories, getCategories } = useContext(CategoryContext)
+    const currentUser = localStorage.getItem("rare_user_id")
 
     const [ post, setPost ] = useState({
-        user_id: 0,
+        user_id: parseInt(currentUser),
         category_id: 0,
         title: "",
         publication_date: Date.now(),
         content: "",
         approved: true
     })
-    console.log(post)
+
     const [ isLoading, setIsLoading ] = useState(true)
 
     const history = useHistory()
@@ -42,7 +43,7 @@ export const PostForm = () => {
             if (postId) {
                 updatePost({
                     id: post.id,
-                    user_id: parseInt(localStorage.getItem("rare_user_id")),
+                    user_id: post.user_id,
                     category_id: parseInt(post.category_id),
                     title: post.title,
                     publication_date: post.publication_date,
@@ -52,7 +53,7 @@ export const PostForm = () => {
                     .then(() => history.push(`/posts/detail/${post.id}`))
             } else {
                 addPost({
-                    user_id: parseInt(localStorage.getItem("rare_user_id")),
+                    user_id: post.user_id,
                     category_id: parseInt(post.category_id),
                     title: post.title,
                     publication_date: post.publication_date,
@@ -91,6 +92,13 @@ export const PostForm = () => {
                         onChange={handleControlledInputChange}
                         ></input>
                 </fieldset>
+                {/* <fieldset>
+                    <label htmlFor="date">Date Published: </label>
+                    <input type="date" id="date" required autoFocus
+                        defaultValue={post.publication_date}
+                        onChange={handleControlledInputChange}
+                        ></input>
+                </fieldset> */}
                 <fieldset>
                     <label htmlFor="content"></label>
                     <textarea type="text" id="content" required autoFocus className="formControl postTextArea"
@@ -122,6 +130,7 @@ export const PostForm = () => {
                         }}>
                     {postId ? "Save Updates" : "Create Post"}
                 </button>
+                <button className="button cancelButton" onClick={() => history.push("/posts")}>Cancel</button>
             </form>
         </section>
     )

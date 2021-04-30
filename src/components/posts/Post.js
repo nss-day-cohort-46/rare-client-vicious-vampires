@@ -9,7 +9,8 @@ export const Post = ({ post }) => (
                 { post.title }
             </Link>
         </h3>
-        <div className="post__content">{ post.publication_date }</div>
+        <div className="post__publication_date">{ post.publication_date }</div>
         <div className="post__content">{ post.content }</div>
+        <div className="post__category">{ post.category.label }</div>
     </section>
 )

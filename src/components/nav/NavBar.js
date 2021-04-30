@@ -14,22 +14,22 @@ export const NavBar = () => {
             <li className="navbar__item">
                 <Link className="navbar__link" to="/">Home</Link>
             </li>
-            <li className="nav-item">
+            <li className="navbar__item">
                 <Link className="nav-link" to="/categories">Category Management</Link>
             </li>
-            <li className="nav-item">
+            <li className="navbar__item">
                 <Link className="nav-link" to="/comments">Add Comment</Link>
             </li>
-            <li className="nav-item">
+            <li className="navbar__item">
                 <Link className="nav-link" to="/tags">Tag Management</Link>
             </li>
-            <li className="nav-item">
+            <li className="navbar__item">
                 <Link className="nav-link" to="/posts">My Posts</Link>
             </li>
 
             {
                 (localStorage.getItem("rare_user_id") !== null) ?
-                    <li className="nav-item">
+                    <li className="navbar__item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
                                 localStorage.removeItem("rare_user_id")
@@ -46,6 +46,7 @@ export const NavBar = () => {
                         </li>
 
                     </>
-            }        </ul>
+            }        
+        </ul>
     )
 }
