@@ -40,6 +40,7 @@ export const ApplicationViews = () => {
 
             {/* Post Area    */}
 
+
                 <PostProvider>
                     <CategoryProvider>
                         <TagProvider>
