@@ -2,7 +2,7 @@ import React from "react"
 import "./Posts.css"
 import { Link } from "react-router-dom"
 
-export default ({ post }) => (
+export const Post = ({ post }) => (
     <section className="singlePost">
         <h3 className="post__title">
             <Link to={`/posts/${post.id}`}>
