@@ -10,14 +10,16 @@ export const CommentDetail = () =>  {
     const {commentId} = useParams();
 
     const history = useHistory();
-
+    
     useEffect(() => {
         getCommentByPostId(commentId)
         .then((response) => {
             setComment(response)
         })
-}, [])
-
+    }, [])
+    
+    
+    console.log("State-comment", comment)
 return (
     <section className="comment_detail">
       <h3 className="comment__subject">Subject {comment.subject}</h3>

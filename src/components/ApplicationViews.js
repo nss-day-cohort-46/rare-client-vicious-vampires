@@ -2,8 +2,7 @@ import React from "react"
 import { Route } from "react-router-dom"
 import { CategoryProvider } from "./categories/CategoryProvider"
 import { CategoryList } from "./categories/CategoryList"
-import {CategoryForm} from "./categories/CategoryForm"
-import {CategoryDetail} from "./categories/CategoryDetail"
+import { CategoryForm } from "./categories/CategoryForm"
 import { PostProvider } from "./posts/PostProvider"
 import { TagProvider } from "./tags/TagsProvider"
 import { TagList } from "./tags/TagList" 
@@ -13,9 +12,11 @@ import { PostForm } from "./posts/PostForm"
 import { CommentProvider } from "./comments/CommentProvider"
 import { CommentList } from "./comments/CommentList"
 import { CommentForm} from "./comments/CommentForm"
+import { CommentDetail } from "./comments/CommentDetail"
 
- 
+
 export const ApplicationViews = () => {
+
     return (
         <>
             <main style={{
@@ -38,26 +39,30 @@ export const ApplicationViews = () => {
                 <Route path="/comments/edit/:commentId(\d+)">
                     <CommentForm />
                 </Route>
+                <Route path="/comments/details/${comment.id}">
+                    <CommentDetail />
+                </Route>
             </ PostProvider>
         </CommentProvider>
 
-            {/* Category Area    */}
+            {/* Category Area   
             <CategoryProvider>
                 <Route exact path="/categories">
                     <CategoryList />
                 </Route>
-                <Route path="/categories/create">
+
+                <Route exact path="/categories/create">
                     <CategoryForm />
                 </Route>
 
-                {/* <Route exact path="/categories/detail/:categoryId(\d+)">
-                            <CategoryDetail />
-                </Route> */}
+                <Route exact path="/categories/edit/:categoryId(\d+)">
+                    <CategoryForm />
+                </Route>
             </CategoryProvider>
 
             
      {/* Tag Area    */}
-        <TagProvider>
+        {/* <TagProvider>
             <Route exact path="/tags">
                 <TagList />
             </Route>
@@ -67,30 +72,67 @@ export const ApplicationViews = () => {
             <Route exact path="/tags/create">
                 <TagForm/>
             </Route>
-        </TagProvider>
+        </TagProvider> */}
 
     {/* Post Area    */}
-        <CategoryProvider>
-            <PostProvider>
+        {/* <CategoryProvider>
+            <PostProvider> */}
 
+            {/* Tag Area    */}
+            {/* <TagProvider>
+                <Route exact path="/tags">
+                    <TagList />
+                </Route>
+            </TagProvider>
+            {/* Post Area    */}
+            {/* <PostProvider>
                 <Route exact path="/posts">
                     <PostList />
                 </Route>
+            </PostProvider>  */} 
 
-                <Route exact path="/posts/create">
-                    <PostForm />
-                </Route>
+                {/* <Route path="/posts/create">
+                <PostForm />
+            </Route> */}
+                {/* <PostProvider> */}
+                    {/* <Route exact path="/categories/detail/:categoryId(\d+)">
+                            <CategoryDetail />
+                </Route> */}
+                {/* </PostProvider> */}
 
-            </PostProvider>
-        </CategoryProvider>
 
-            {/* Comment Area    */}
+                {/* Tag Area    */}
+                {/* <TagProvider>
+                    <Route exact path="/tags">
+                        <TagList />
+                    </Route>
+                    <Route exact path="/tags/edit/:tagId(\d+)">
+                        <TagForm />
+                    </Route>
+                    <Route exact path="/tags/create">
+                        <TagForm />
+                    </Route>
+                </TagProvider>
+        </CategoryProvider> */}
 
-            {/* Tag Area    */}
 
-            {/* Post Area    */}
+                {/* Post Area    */}
+                <CategoryProvider>
+                    <PostProvider>
+
+                        <Route exact path="/posts">
+                            <PostList />
+                        </Route>
+
+                        <Route exact path="/posts/create">
+                            <PostForm />
+                        </Route>
+
+                    </PostProvider>
+                </CategoryProvider> 
 
 
         </>
     )
+
 }

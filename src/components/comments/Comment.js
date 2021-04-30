@@ -8,10 +8,12 @@ export const CommentCard = ({ category }) => {
     const { deleteComment } = useContext(CommentContext)
 
     const handleDelete = () => {
+        if (window.confirm('STOP! Do you want to delete this comment?')) {
         deleteComment(category.id)
             .then(() => {
                 history.push("/comments")
             })
+        }
     }
 
     return (

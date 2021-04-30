@@ -29,7 +29,7 @@ export const CommentList = () => {
           </button>
 
           { comments.map((comment, index) => {
-              {console.log("comments", comment)}
+              // {console.log("comments", comment)}
               return <CommentCard key={index} category={comment} />
             })
           }
