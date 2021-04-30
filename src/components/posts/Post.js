@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 export const Post = ({ post }) => (
     <section className="singlePost">
         <h3 className="post__title">
-            <Link to={`/posts/${post.id}`}>
+            <Link to={`/posts/detail/${post.id}`}>
                 { post.title }
             </Link>
         </h3>
