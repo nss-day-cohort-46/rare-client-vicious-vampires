@@ -45,7 +45,7 @@ export const ApplicationViews = () => {
             </ PostProvider>
         </CommentProvider>
 
-            {/* Category Area   
+            {/* Category Area    */}
             <CategoryProvider>
                 <Route exact path="/categories">
                     <CategoryList />
@@ -62,7 +62,7 @@ export const ApplicationViews = () => {
 
             
      {/* Tag Area    */}
-        {/* <TagProvider>
+        <TagProvider>
             <Route exact path="/tags">
                 <TagList />
             </Route>
@@ -72,37 +72,37 @@ export const ApplicationViews = () => {
             <Route exact path="/tags/create">
                 <TagForm/>
             </Route>
-        </TagProvider> */}
+        </TagProvider>
 
     {/* Post Area    */}
-        {/* <CategoryProvider>
-            <PostProvider> */}
+        <CategoryProvider>
+            <PostProvider>
 
             {/* Tag Area    */}
-            {/* <TagProvider>
+            { <TagProvider>
                 <Route exact path="/tags">
                     <TagList />
                 </Route>
             </TagProvider>
             {/* Post Area    */}
-            {/* <PostProvider>
+            <PostProvider>
                 <Route exact path="/posts">
                     <PostList />
                 </Route>
-            </PostProvider>  */} 
+            </PostProvider>
 
-                {/* <Route path="/posts/create">
+                <Route path="/posts/create">
                 <PostForm />
-            </Route> */}
-                {/* <PostProvider> */}
+            </Route>
+                 <PostProvider>
                     {/* <Route exact path="/categories/detail/:categoryId(\d+)">
                             <CategoryDetail />
-                </Route> */}
-                {/* </PostProvider> */}
+                </Route> 
+                {</PostProvider>
 
 
                 {/* Tag Area    */}
-                {/* <TagProvider>
+                <TagProvider>
                     <Route exact path="/tags">
                         <TagList />
                     </Route>
@@ -113,7 +113,7 @@ export const ApplicationViews = () => {
                         <TagForm />
                     </Route>
                 </TagProvider>
-        </CategoryProvider> */}
+        </CategoryProvider>
 
 
                 {/* Post Area    */}
