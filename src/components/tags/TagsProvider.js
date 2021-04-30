@@ -15,9 +15,9 @@ export const TagProvider = (props) => {
     }
     
     const getTagById = (id) => {
-      return fetch(`http://localhost:8088/tags/${id}`)
-          .then(res => res.json())
-  }
+    return fetch(`http://localhost:8088/tags/${id}`)
+        .then(res => res.json())
+}
 
     const addTag = (tag) => {
         return fetch("http://localhost:8088/tags", {
@@ -31,28 +31,28 @@ export const TagProvider = (props) => {
     }
 
     const updateTag = tag => {
-      return fetch(`http://localhost:8088/tags/${tag.id}`, {
-          method: "PUT",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify(tag)
-      })
-          .then(getTags)
-  }
+    return fetch(`http://localhost:8088/tags/${tag.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tag)
+    })
+        .then(getTags)
+}
 
-    const deletePost = (tagId) => {
-      return fetch(`http://localhost:8088/Posts/${tagId}`, {
-          method: "DELETE"
-      })
-          .then(getTags)
-  }
+    const deleteTag = (tagId) => {
+    return fetch(`http://localhost:8088/tags/${tagId}`, {
+        method: "DELETE"
+    })
+        .then(getTags)
+}
 
 
 
     return (
         <TagContext.Provider value={{
-            tags, addTag, getTags, updateTag, deletePost, getTagById
+            tags, addTag, getTags, updateTag, deleteTag, getTagById
         }}>
             {props.children}
         </TagContext.Provider>
