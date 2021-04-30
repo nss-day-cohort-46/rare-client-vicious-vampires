@@ -26,7 +26,7 @@ export const PostDetail = () => {
                 setPost(res)
             })
     }, [])
-    console.log(post)
+
     return (
         <section className="postDetail">
                 <h3 className="postTitle">{post.title}</h3>
