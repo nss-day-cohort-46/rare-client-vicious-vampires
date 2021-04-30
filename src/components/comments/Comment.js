@@ -2,13 +2,13 @@ import React, { useContext } from "react"
 import { useHistory } from "react-router-dom"
 import { CommentContext } from "./CommentProvider"
 
-export const CommentCard = ({ comment }) => {
+export const CommentCard = ({ category }) => {
 
     const history = useHistory()
     const { deleteComment } = useContext(CommentContext)
 
     const handleDelete = () => {
-        deleteComment(comment.id)
+        deleteComment(category.id)
             .then(() => {
                 history.push("/comments")
             })
@@ -16,12 +16,14 @@ export const CommentCard = ({ comment }) => {
 
     return (
         <section className="comment_card_section">
-        <h2 className="comment_subject"> {comment.subject} </h2>
-        <div className="comment_content"> {comment.content}</div>
-        <div className="comment_date_time"> {comment.created_on} </div>
-
+        <h2 className="comment_subject"> {category?.subject} </h2>
+        <div className="comment_content">Content: {category?.content}</div>
+        <div className="comment_date_time">Date: {category?.created_on} </div>
+        <div className="edit_comment">
+            <button onClick={() => history.push(`/comments/edit/${category.id}`)}>Edit Comment</button>
+        </div>
         <div className="delete_comment">
-            <button id={comment.id} onClick={handleDelete}></button>
+            <button onClick={handleDelete}>Delete Comment</button>
         </div>
         </section>
     )

@@ -19,6 +19,10 @@
     margin: 0 0 20px 0;
 }
 
-.createPostButton {
+.button {
     padding: 3px;
+}
+
+.postFormSection {
+    margin: 0 0 0 15px;
 }
