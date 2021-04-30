@@ -12,5 +12,6 @@ export const Post = ({ post }) => (
         <div className="post__publication_date">{ post.publication_date }</div>
         <div className="post__content">{ post.content }</div>
         <div className="post__category">{ post.category.label }</div>
+        <div className="post__author">Author: { post.user?.first_name } { post.user?.last_name}</div>
     </section>
 )

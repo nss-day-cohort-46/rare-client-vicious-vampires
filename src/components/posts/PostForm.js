@@ -14,7 +14,7 @@ export const PostForm = () => {
         user_id: parseInt(currentUser),
         category_id: 0,
         title: "",
-        publication_date: Date.now(),
+        publication_date: new Date().toISOString(),
         content: "",
         approved: true
     })
@@ -92,13 +92,6 @@ export const PostForm = () => {
                         onChange={handleControlledInputChange}
                         ></input>
                 </fieldset>
-                {/* <fieldset>
-                    <label htmlFor="date">Date Published: </label>
-                    <input type="date" id="date" required autoFocus
-                        defaultValue={post.publication_date}
-                        onChange={handleControlledInputChange}
-                        ></input>
-                </fieldset> */}
                 <fieldset>
                     <label htmlFor="content"></label>
                     <textarea type="text" id="content" required autoFocus className="formControl postTextArea"
